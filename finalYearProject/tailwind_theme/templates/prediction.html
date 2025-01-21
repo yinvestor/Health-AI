@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagnosis Report</title>
+</head>
+<body>
+    {% block content %}
+    {% if prediction %}
+        <h1>Diagnosis Report</h1>
+        <p>Diagnosis: {{ prediction }}</p>
+    {% else %}
+        <h1>Diagnosis Report</h1>
+        <p>Diagnosis: Not Available</p>
+    {% endif %}
+    {% endblock %}
+</body>
+</html>
