@@ -1,0 +1,55 @@
+{% load static %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Health AI{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		{% tailwind_css %}
+</head>
+<body>
+    <header>
+        <div class="container flex pt-4 m-8 bg-gradient-to-br from-sky-200 via-20% via-cyan-200 to-emerald-100-200 border-b-2 border-amber-300">
+                <div class=" ml-4 mr-4 mt-8 mb-4 p-4">
+                    <p class="font-lily text-amber-500 text-4xl">
+                        <a href="#">Health AI</a>
+                    </p>
+                </div>
+                <div class="align-middle mx-auto py-12 font-poppins font-semibold">
+                    <nav class="">
+                        <ul class="py-4 mb-4 flex flex-row gap-5 font-openSans font-bold text-xl">
+                            <li>
+                                <a href="#" class="hover:text-amber-500 bg-slate-200 px-2 border rounded border-slate-200 ease-in duration-75">Home</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'checkup' %}" class="hover:text-amber-500 hover:ease-in hover:duration-200">How It Works</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-amber-500 ease-in duration-75">About</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-amber-500 ease-in duration-75">Contact</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register' %}" class="hover:text-amber-500 text-gray-200 bg-black px-2 border border-black rounded ease-in duration-75">Register</a>
+                        </ul>
+                    </nav>
+                </div>
+        </div>
+
+
+    </header>
+    <main>
+        {% block content %}
+        <!-- Content for specific pages goes here -->
+        {% endblock %}
+    </main>
+    <footer>
+        <!-- Footer Content -->
+    </footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load tailwind_tags %}
+{% load form_tags %}
+{% tailwind_css %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkup</title>
+</head>
+<body>
+    {% block content %}
+        <h2>
+            Check Up
+        </h2>
+        <form action="{% url 'checkup' %}" method="post">
+            { csrf_token }
+            {{ form.non_field_errors }}
+
+            <label></label>
+        </form>
+    {% endblock %}
+</body>
+</html>
