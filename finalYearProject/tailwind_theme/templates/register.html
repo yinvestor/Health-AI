@@ -1,7 +1,6 @@
 {% extends 'index.html' %}
-{% load static tailwind_tags %}
+{% load tailwind_tags form_tags %}
 {% tailwind_css %}
-{% load form_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,39 +15,16 @@
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
             {{ form.non_field_errors }}
-            <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                {{ form.username|add_placeholder:"Enter your username"|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
-            </div>
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                {{ form.email|add_placeholder:"Enter your email"|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
-            </div>
-            <div>
-                <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
-                {{ form.first_name|add_placeholder:"Enter your first name"|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
-            </div>
-            <div>
-                <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
-                {{ form.last_name|add_placeholder:"Enter your last name"|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
-            </div>
-            <div>
-                <label for="contact" class="block text-sm font-medium text-gray-700">Contact</label>
-                {{ form.contact|add_placeholder:"Enter your contact number"|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
-            </div>
-            <div>
-                <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-                {{ form.age|add_placeholder:"Enter your age"|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
-            </div>
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                {{ form.password|add_placeholder:"Enter your password"|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
-            </div>
-            <div>
-                <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm password</label>
-                {{ form.confirm_password|add_placeholder:"Confirm your password"|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
-            </div>
-            <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700">Register</button>
+            {% for field in form %}
+                <div class="mb-4">
+                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+                    {{ field|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"|add_placeholder:field.label }}
+                    {% for error in field.errors %}
+                        <p class="text-red-500 text-sm">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="w-20 mt-2 py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700">Register</button>
         </form>
         </section>
     {% endblock %}

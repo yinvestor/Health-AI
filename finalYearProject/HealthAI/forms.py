@@ -1,15 +1,20 @@
 from django import forms
-from .models import Patients
-from .models import CheckUp
+from .models import Patients, CheckUp
 
 class RegistrationForm(forms.ModelForm):
-    confirm_password = forms.CharField(widget=forms.PasswordInput)
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
 
     class Meta:
         model = Patients
         fields = ['username', 'email', 'password', 'first_name', 'last_name', 'age', 'contact']
         widgets = {
-            'password': forms.PasswordInput,
+            'password': forms.PasswordInput(attrs={'placeholder': 'Enter Password'}),
+            'username': forms.TextInput(attrs={'placeholder': 'Enter Username'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Enter Email'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Enter First Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Enter Last Name'}),
+            'age': forms.NumberInput(attrs={'placeholder': 'Enter Age'}),
+            'contact': forms.TextInput(attrs={'placeholder': 'Enter Contact'}),
         }
 
     def clean(self):
@@ -19,23 +24,18 @@ class RegistrationForm(forms.ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError("Passwords do not match")
-
         return cleaned_data
 
-class CheckUpForm(forms.Form):
-    age = forms.IntegerField()
-    sex = forms.ChoiceField(choices=[('Male', 'Male'), ('Female', 'Female')], widget=forms.RadioSelect)
-    cp = forms.ChoiceField(choices=[(0, 'Type 0'), (1, 'Type 1'), (2, 'Type 2'), (3, 'Type 3')], widget=forms.RadioSelect)
-    trestbps = forms.IntegerField()
-    chol = forms.IntegerField()
-    fbs = forms.ChoiceField(choices=[(0, 'No'), (1, 'Yes')], widget=forms.RadioSelect)
-    restecg = forms.ChoiceField(choices=[(0, 'Normal'), (1, 'Abnormal')], widget=forms.RadioSelect)
-    thalach = forms.IntegerField()
-    exang = forms.ChoiceField(choices=[(0, 'No'), (1, 'Yes')], widget=forms.RadioSelect)
-    oldpeak = forms.FloatField()
-    slope = forms.ChoiceField(choices=[(0, 'Up'), (1, 'Flat'), (2, 'Down')], widget=forms.RadioSelect)
-    ca = forms.ChoiceField(choices=[(0, 'None'), (1, 'One'), (2, 'Two'), (3, 'Three'), (4, 'Four')], widget=forms.RadioSelect)
-    thal = forms.ChoiceField(choices=[(0, 'Normal'), (1, 'Fixed Defect'), (2, 'Reversible Defect'), (3, 'Unknown')], widget=forms.RadioSelect)
 
+class CheckUpForm(forms.ModelForm):
     class Meta:
         model = CheckUp
+        fields = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
+        widgets = {
+            field: forms.NumberInput(attrs={'placeholder': f'Enter {field.capitalize()}'})
+            for field in [
+                'age', 'sex', 'cp', 'trestbps', 'chol', 'fbs',
+                'restecg', 'thalach', 'exang', 'oldpeak', 'slope',
+                'ca', 'thal'
+            ]
+        }
