@@ -20,8 +20,6 @@
     .hero2{
     position: absolute;
     font-style: italic;
-    font-weight: 500;
-    font-size: 32px;
     line-height: 100%;
     display: flex;
     align-items: center;
