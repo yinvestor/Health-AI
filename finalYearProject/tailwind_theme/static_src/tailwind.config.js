@@ -53,6 +53,12 @@ module.exports = {
                 lato: ['Lato', 'sans-serif'],
                 nunito: ['Nunito', 'sans-serif'],
             },
+            screens:{
+                'lg': '768px',
+                'max-wid-screen-2': '1024px',
+                'max-wid-screen-3': '1280px',
+                'max-wid-screen-4': '1536px',
+            }
         },
     },
     plugins: [

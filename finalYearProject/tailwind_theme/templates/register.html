@@ -10,14 +10,14 @@
 </head>
 <body class="bg-slate-50">
     {% block content %}
-        <section class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+        <section class="max-w-md mx-auto mt-10 p-6 bg-gradient-to-bl from-pink-200 to-emerald-100 rounded-lg shadow-md shadow-purple-300">
         <h2 class="text-2xl font-bold mb-6">Register</h2>
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
             {{ form.non_field_errors }}
             {% for field in form %}
                 <div class="mb-4">
-                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium bg-clip-text text-transparent bg-gradient-to-l from-red-500 to-purple-600">{{ field.label }}</label>
                     {{ field|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"|add_placeholder:field.label }}
                     {% for error in field.errors %}
                         <p class="text-red-500 text-sm">{{ error }}</p>
