@@ -9,47 +9,135 @@
     <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-		{% tailwind_css %}
+    {% tailwind_css %}
 </head>
-<body class=" mx-auto px-4">
-    <header class="w-full my-4">
-        <div class="container h-20 flex flex-row">
-                <div class="mx-4 mt-4">
-                    <p class="font-oswald  text-4xl">
-                        <a href="{% url 'index' %}">Health AI</a>
-                    </p>
-                </div>
-                <div class="font-poppins font-semibold">
-                    <nav class="">
-                        <ul class=" flex flex-row gap-5 font-poppins font-bold text-xl ml-40 my-4">
+<body class="block px-4">
+    <header class="w-full fixed bg-blue-700 top-0 left-0 z-50">
+        <div class="container flex flex-col">
+            <div class="ml-4 mt-4 mb-8">
+                <p class="font-oswald text-2xl">
+                    <a href="{% url 'index' %}">Health AI</a>
+                </p>
+            </div>
+            <div class="font-poppins font-semibold flex flex-row">
+                <div class="absolute left-0 top-0 py-14 w-full">
+                    <nav class="hidden md:flex">
+                        <ul class="font-poppins gap-2 ml-40">
                             <li>
-                                <a href="{% url 'index' %}" class="hover:text-amber-500 bg-slate-200 px-2 border rounded border-slate-200 ease-in duration-75">Home</a>
+                                <a href="{% url 'index' %}" class="nav-link hover:text-amber-500 bg-slate-200 px-2 border rounded border-slate-200 ease-in duration-75">Home</a>
                             </li>
                             <li>
-                                <a href="{% url 'checkup' %}" class="hover:text-amber-500 hover:ease-in hover:duration-200">How It Works</a>
+                                <a href="{% url 'checkup' %}" class="nav-link text-yellow-500 hover:text-amber-500 ease-in duration-200">How It Works</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-amber-500 ease-in duration-75">About</a>
+                                <a href="#" class="nav-link text-yellow-500 hover:text-amber-500 ease-in duration-75">About</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:text-amber-500 ease-in duration-75">Contact</a>
+                                <a href="#" class="nav-link text-yellow-500 hover:text-amber-500 ease-in duration-75">Contact</a>
                             </li>
                             <li>
-                                <a href="{% url 'register' %}" class="hover:text-amber-500 text-gray-200 bg-black px-2 border border-black rounded ease-in duration-75">Register</a>
+                                <a href="{% url 'register' %}" class="nav-link hover:text-amber-500 text-gray-200 bg-black px-2 border border-black rounded ease-in duration-75">Register</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
+                <!-- Mobile Menu -->
+                <div class="md:hidden absolute top-[0.7rem] right-[1.50rem] text-2xl gap-2 cursor-pointer">
+                    <i id="menu-icon" class="ri-menu-line"></i>
+                    <i id="close-icon" class="ri-close-line hidden"></i>
+                </div>
+            </div>
+            <nav id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-white shadow-md z-40">
+                <ul class="font-poppins flex flex-col items-center gap-2 py-4">
+                    <li>
+                        <a href="{% url 'index' %}" class="nav-link hover:text-amber-500">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'checkup' %}" class="nav-link hover:text-amber-500">How It Works</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link hover:text-amber-500">About</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link hover:text-amber-500">Contact</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'register' %}" class="nav-link hover:text-amber-500 bg-black text-white px-4 py-2 rounded">Register</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-
-
     </header>
     <main>
+        <script src="{% static 'js/main.js' %}"></script>
         {% block content %}
-        <!-- Content for specific pages goes here -->
         {% endblock %}
     </main>
     <footer>
-        <!-- Footer Content -->
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+        <!-- About Section -->
+        <div>
+            <h4 class="text-lg font-semibold mb-4">About Health AI</h4>
+            <p class="text-gray-400 text-sm">
+                Health AI is dedicated to providing advanced health solutions using cutting-edge AI technology. Our mission is to empower individuals to make informed health decisions.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+            <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+                <li>
+                    <a href="{% url 'index' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'checkup' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">How It Works</a>
+                </li>
+                <li>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-200">About</a>
+                </li>
+                <li>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-200">Contact</a>
+                </li>
+                <li>
+                    <a href="{% url 'register' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">Register</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+            <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+            <p class="text-gray-400 text-sm">
+                Have questions or need assistance? Get in touch with us.
+            </p>
+            <ul class="mt-4 space-y-2">
+                <li>
+                    <i class="ri-map-pin-2-line text-yellow-400"></i>
+                    <span class="ml-2">123 Health Street, Wellness City</span>
+                </li>
+                <li>
+                    <i class="ri-mail-line text-yellow-400"></i>
+                    <span class="ml-2">
+                        <a href="mailto:support@healthai.com" class="hover:text-yellow-400">support@healthai.com</a>
+                    </span>
+                </li>
+                <li>
+                    <i class="ri-phone-line text-yellow-400"></i>
+                    <span class="ml-2">+123-456-7890</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-8 border-t border-gray-700 pt-4 text-center text-sm text-gray-500">
+        <p>&copy; {{ year }} Health AI. All rights reserved.</p>
+        <p>
+            <a href="#" class="hover:text-yellow-400 transition duration-200">Privacy Policy</a> |
+            <a href="#" class="hover:text-yellow-400 transition duration-200">Terms of Service</a>
+        </p>
+    </div><!-- Footer Content -->
     </footer>
 </body>
 </html>
