@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,16 +7,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Health AI{% endblock %}</title>
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% endcompress %}
     {% tailwind_css %}
 </head>
 <body class="block px-4">
     <header class="w-full fixed bg-blue-700 top-0 left-0 z-50">
         <div class="container flex flex-col">
             <div class="ml-4 mt-4 mb-8">
-                <p class="font-oswald text-2xl">
+                <p class="font-oswald text-2xl text-white">
                     <a href="{% url 'index' %}">Health AI</a>
                 </p>
             </div>
@@ -30,10 +33,10 @@
                                 <a href="{% url 'checkup' %}" class="nav-link text-yellow-500 hover:text-amber-500 ease-in duration-200">How It Works</a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-yellow-500 hover:text-amber-500 ease-in duration-75">About</a>
+                                <a href="#about" class="nav-link text-yellow-500 hover:text-amber-500 ease-in duration-75">About</a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-yellow-500 hover:text-amber-500 ease-in duration-75">Contact</a>
+                                <a href="#contact" class="nav-link text-yellow-500 hover:text-amber-500 ease-in duration-75">Contact</a>
                             </li>
                             <li>
                                 <a href="{% url 'register' %}" class="nav-link hover:text-amber-500 text-gray-200 bg-black px-2 border border-black rounded ease-in duration-75">Register</a>
@@ -43,8 +46,8 @@
                 </div>
                 <!-- Mobile Menu -->
                 <div class="md:hidden absolute top-[0.7rem] right-[1.50rem] text-2xl gap-2 cursor-pointer">
-                    <i id="menu-icon" class="ri-menu-line"></i>
-                    <i id="close-icon" class="ri-close-line hidden"></i>
+                    <i id="menu-icon" class="ri-menu-line text-white"></i>
+                    <i id="close-icon" class="ri-close-line hidden text-white"></i>
                 </div>
             </div>
             <nav id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-white shadow-md z-40">
@@ -94,10 +97,10 @@
                     <a href="{% url 'checkup' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">How It Works</a>
                 </li>
                 <li>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-200">About</a>
+                    <a href="#about" id="about" class="text-gray-400 hover:text-yellow-400 transition duration-200">About</a>
                 </li>
                 <li>
-                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-200">Contact</a>
+                    <a href="#contact" id="contact" class="text-gray-400 hover:text-yellow-400 transition duration-200">Contact</a>
                 </li>
                 <li>
                     <a href="{% url 'register' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">Register</a>
@@ -114,17 +117,17 @@
             <ul class="mt-4 space-y-2">
                 <li>
                     <i class="ri-map-pin-2-line text-yellow-400"></i>
-                    <span class="ml-2">123 Health Street, Wellness City</span>
+                    <span class="ml-2">Kampala International University, Uganda</span>
                 </li>
                 <li>
                     <i class="ri-mail-line text-yellow-400"></i>
                     <span class="ml-2">
-                        <a href="mailto:support@healthai.com" class="hover:text-yellow-400">support@healthai.com</a>
+                        <a href="https://github.com/yinvestor/healthai.git" class="hover:text-yellow-400">support@healthai.com</a>
                     </span>
                 </li>
                 <li>
                     <i class="ri-phone-line text-yellow-400"></i>
-                    <span class="ml-2">+123-456-7890</span>
+                    <span class="ml-2">+256 755811738 | +256 782 709809 | +256 700 231992</span>
                 </li>
             </ul>
         </div>

@@ -39,7 +39,14 @@ module.exports = {
          * Python: If you use Tailwind CSS classes in Python, uncomment the following line
          * and make sure the pattern below matches your project structure.
          */
-        // '../../**/*.py'
+        '../../**/*.py',
+        // './templates/**/*.html', // For Django templates
+        // './**/*.html',           // For plain HTML files
+        // './**/*.js',             // For JavaScript files
+        // './**/*.jsx',            // For React files
+        // './**/*.ts',             // For TypeScript files
+        // './**/*.tsx',            // For React + TypeScript files
+        './**/*.py',             // If you use Tailwind inside Python strings
 
     ],
     theme: {
