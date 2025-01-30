@@ -3,7 +3,7 @@
 {% block content %}
 	<body class="w-full">
 
-        <section class="mt-20 flex flex-row align-middle text-center h-[300px]" id="home" style="background-image: url('{% static 'img/images.jpeg' %}')">
+        <section class="mt-20 flex flex-row align-middle text-center h-[300px] bg-black" id="home">
             <div class=" w-full align-middle mb-10 mt-20 text-center">
                 <div class="left-0 " >
                     <div class="">
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="relative  m-2">
-                   <button class=" p-2 border  rounded font-bold bg-clip-text text-transparent bg-gradient-to-l from-indigo-600 to-fuchsia-500">
+                   <button class=" p-2 border  rounded font-bold bg-clip-text text-transparent bg-gradient-to-l from-indigo-600 to-fuchsia-500 hover:border hover:border-purple-700 hover:bg-yellow-700 hover:text-white">
                         Learn More.
                    </button>
                 </div>
@@ -30,7 +30,7 @@
                 
 
                 <div class="mt-20 ">
-                    <button class="p-2 border rounded font-bold bg-clip-text text-transparent bg-gradient-to-l from-indigo-600 to-fuchsia-500">
+                    <button class="p-2 border rounded bg-white font-bold bg-clip-text text-transparent bg-gradient-to-l from-indigo-600 to-fuchsia-500 hover:border hover:border-green-400 hover:bg-green-400">
                         <a href="{% url 'checkup' %}">Try It Now</a>
                     </button>
                 </div>

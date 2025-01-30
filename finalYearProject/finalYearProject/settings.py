@@ -87,6 +87,14 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+LOGIN_URL = "/healthai/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/healthai/login/"
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -139,7 +147,7 @@ STATICFILES_FINDERS = [
 ]
 
 COMPRESS_ENABLED = True  # Enable compression
-COMPRESS_OFFLINE = True  # Compress files offline
+# COMPRESS_OFFLINE = True  # Compress files offline
 COMPRESS_ROOT = STATIC_ROOT
 
 
