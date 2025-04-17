@@ -51,6 +51,9 @@ module.exports = {
     ],
     theme: {
         extend: {
+            backgroundImage: {
+                'custom-image': "url('/static/img/bgimage.jpg')",
+              },
             fontFamily: {
                 poppins: ['Poppins', 'sans-serif'],
                 oswald: ['Oswald', 'sans-serif'],

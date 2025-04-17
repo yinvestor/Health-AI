@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load form_tags %}
 {% block content %}
-    <section class="max-w-md mx-auto mt-10 p-6 bg-gradient-to-bl from-pink-200 to-emerald-100 rounded-lg shadow-md shadow-purple-300">
+    <section class="max-w-md mx-auto mt-10 p-6 bg-gradient-to-bl from-pink-200 to-emerald-100 rounded-lg shadow-md shadow-purple-300" id="Login">
     <h2 class="text-2xl font-bold mb-6">Login</h2>
     <form method="post">
         {% csrf_token %}
@@ -18,6 +18,6 @@
         {% endfor %}
         <button type="submit">Login</button>
     </form>
-    <p>Don't have an account? <a href="{% url 'wewandiise' %}">Register</a></p>
+    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
     </section>
 {% endblock %}
