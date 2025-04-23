@@ -32,21 +32,21 @@ class Migration(migrations.Migration):
                 ("password", models.CharField(max_length=100)),
             ],
         ),
-        migrations.CreateModel(
-            name="Predictions",
-            fields=[
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                ("condition", models.IntegerField()),
-            ],
-        ),
+        # migrations.CreateModel(
+        #     name="Predictions",
+        #     fields=[
+        #         (
+        #             "id",
+        #             models.BigAutoField(
+        #                 auto_created=True,
+        #                 primary_key=True,
+        #                 serialize=False,
+        #                 verbose_name="ID",
+        #             ),
+        #         ),
+        #         ("condition", models.IntegerField()),
+        #     ],
+        # ),
         migrations.CreateModel(
             name="CheckUp",
             fields=[

@@ -1,20 +1,18 @@
 {% extends 'index.html' %}
 {% load static tailwind_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Diagnosis Report</title>
-</head>
-<body>
-    {% block content %}
-    {% if prediction %}
-        <h1>Diagnosis Report</h1>
-        <p>Diagnosis: {{ prediction }}</p>
-    {% else %}
-        <h1>Diagnosis Report</h1>
-        <p>Diagnosis: Not Available</p>
-    {% endif %}
-    {% endblock %}
-</body>
-</html>
+
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Prediction Result</h2>
+    <p class="text-xl">
+        {% if prediction == 1 %}
+            ⚠️ The patient is likely to have Coronary Artery Disease.
+        {% else %}
+            ✅ The patient is not likely to have Coronary Artery Disease.
+        {% endif %}
+    </p>
+    <a href="{% url 'checkup' %}" class="mt-4 inline-block text-blue-500 underline">Try another checkup</a>
+</div>
+{% endblock %}

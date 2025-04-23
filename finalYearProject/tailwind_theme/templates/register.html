@@ -1,30 +1,44 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load tailwind_tags form_tags %}
-{% tailwind_css %}
-{% load static %}
 
-<body class="bg-slate-400">
 {% block content %}
-       <!-- <section class="max-w-md mx-auto mt-10 p-6 bg-gradient-to-bl from-pink-200 to-emerald-100 rounded-lg shadow-md shadow-purple-300"> -->
-        <section class=" mx-auto mb-4 mt-10 bg-custom-image p-6 rounded-lg shadow-lg shadow-purple-300 bg-cover h-[520px] w-[400px]">
-        <div class="mb-2">
-            <h2 class="text-5xl text-center font-bold mb-6">Register</h2>
-        <form action="{% url 'register' %}" method="post" class="mt-10">
-           {% csrf_token %}
-            {{ form.non_field_errors }}
-            {% for field in form %}
-               <div class="mb-4">
-                    <label for="{{ field.id_for_label }}" class="block text-md font-medium bg-clip-text text-transparent bg-gradient-to-l from-red-500 to-purple-600">{{ field.label }}</label>
-                    {{ field|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"|add_placeholder:field.label }}
-                   {% for error in field.errors %}
-                        <p class="text-red-500 text-sm">{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endfor %}
-           <button type="submit" class="btn btn-primary mb-4">Register</button>
-        </form>
-        </div>
-        </section>
-    {% endblock %}
-</body>
-</html>
+<section class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-6">Register</h2>
+
+  <form method="post" action="">
+    {% csrf_token %}
+
+    <!-- User Account Info -->
+    <h3 class="text-lg font-semibold mb-2">Account Info</h3>
+    {% for field in form %}
+      <div class="mb-4">
+        <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+          {{ field.label }}
+        </label>
+        {{ field|add_class:"w-full mt-1 px-3 py-2 border border-gray-300 rounded-md" }}
+        {% for error in field.errors %}
+          <p class="text-red-500 text-sm">{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+    <!-- Patient Profile Info -->
+    <h3 class="text-lg font-semibold mb-2 mt-6">Patient Info</h3>
+    {% for field in profile_form %}
+      <div class="mb-4">
+        <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+          {{ field.label }}
+        </label>
+        {{ field|add_class:"w-full mt-1 px-3 py-2 border border-gray-300 rounded-md" }}
+        {% for error in field.errors %}
+          <p class="text-red-500 text-sm">{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="w-full py-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-700">
+      Register
+    </button>
+  </form>
+</section>
+{% endblock %}
