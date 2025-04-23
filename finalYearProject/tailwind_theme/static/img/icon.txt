@@ -1,2 +1,3 @@
 <i class="ri-menu-line"></i>
 <i class="ri-close-fill"></i>
+<i class="ri-arrow-right-long-line"></i>

@@ -1822,6 +1822,10 @@ input[type="range"]::-ms-fill-lower{
   margin: 0.5rem;
 }
 
+.m-\[\]{
+  margin: ;
+}
+
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -1880,6 +1884,16 @@ input[type="range"]::-ms-fill-lower{
 .mx-\[196px\]{
   margin-left: 196px;
   margin-right: 196px;
+}
+
+.mx-\[300px\]{
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+.my-2{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mb-10{
@@ -1948,6 +1962,14 @@ input[type="range"]::-ms-fill-lower{
 
 .mb-1{
   margin-bottom: 0.25rem;
+}
+
+.ml-\[\]{
+  margin-left: ;
+}
+
+.ml-\[300px\]{
+  margin-left: 300px;
 }
 
 .block{
@@ -2225,6 +2247,10 @@ input[type="range"]::-ms-fill-lower{
   padding: 1.5rem;
 }
 
+.p-1{
+  padding: 0.25rem;
+}
+
 .px-2{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -2466,6 +2492,18 @@ input[type="range"]::-ms-fill-lower{
 .hover\:text-yellow-400:hover{
   --tw-text-opacity: 1;
   color: rgb(227 160 8 / var(--tw-text-opacity, 1));
+}
+
+.hover\:underline:hover{
+  text-decoration-line: underline;
+}
+
+.hover\:underline-offset-1:hover{
+  text-underline-offset: 1px;
+}
+
+.hover\:underline-offset-4:hover{
+  text-underline-offset: 4px;
 }
 
 .hover\:shadow:hover{
