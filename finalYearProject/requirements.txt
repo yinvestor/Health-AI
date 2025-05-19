@@ -1,3 +1,13 @@
 Django>=4.0,<5.0
 django-tailwind>=3.0,<4.0
 gunicorn>=20.0,<21.0
+scikit-learn
+xgboost
+django-tailwind
+pandas
+numpy
+notebook
+django-filter
+django-allauth
+djangorestframework
+joblib
