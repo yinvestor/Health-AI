@@ -2,7 +2,7 @@
 {% load tailwind_tags form_tags %}
 
 {% block content %}
-<section class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+<section class="max-w-md font-poppins mx-auto mb-6 mt-10 p-6 bg-white rounded-lg shadow-md">
   <h2 class="text-2xl font-bold mb-6">Register</h2>
 
   <form method="post" action="">
@@ -36,9 +36,11 @@
       </div>
     {% endfor %}
 
-    <button type="submit" class="w-full py-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-700">
+    <button type="submit" class="w-40 block py-2 mt-4 mb-4 bg-blue-500 text-white rounded hover:bg-blue-700 items-center text-center justify-center place-content-center top-0.5 left-0.5 mx-auto">
       Register
     </button>
+    <p class="inline mx-">Already have an account?</p>
+    <a class="ml-2 underline font-medium text-xl " href="{% url 'login' %}">Login here</a>
   </form>
 </section>
 {% endblock %}

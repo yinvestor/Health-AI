@@ -54,7 +54,7 @@
             <nav id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-white shadow-md z-40 md:block md:flex md:flex-col md:bg-blue-700 md:text-white">
                 <ul class="font-poppins flex flex-col items-center gap-4 py-4 md:flex-row md:items-center md:justify-center md:top-50 md:left-50 md:mb-4 ">
                     <li>
-                        <a href="{% url 'index' %}" class="nav-link hover:text-amber-500">Home</a>
+                        <a href="{% url 'index' %}" class="nav-link hover:text-amber-500 bg-black text-white px-4 py-2 rounded">Home</a>
                     </li>
                     <li>
                         <a href="{% url 'checkup' %}" class="nav-link hover:text-amber-500">How It Works</a>
@@ -69,9 +69,14 @@
                         {% if user.is_authenticated %}
                         <a href="{% url 'logout' %}" class="nav-link hover:text-amber-500 bg-black text-white px-4 py-2 rounded">Logout</a>
                         {% else %}
-                            <a href="{% url 'register' %}" class="nav-link hover:text-amber-500 bg-black text-white px-4 py-2 rounded">Register</a>
+                            <a href="{% url 'register' %}" class="nav-link hover:text-amber-500 ">Register</a>
                         {% endif %}
                     </li>
+                    {% comment %} <ul>
+                        <li>
+
+                        </li>
+                    </ul> {% endcomment %}
                 </ul>
             </nav>
         </div>
