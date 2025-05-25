@@ -2,6 +2,7 @@
 const menuIcon = document.getElementById("menu-icon");
 const closeIcon = document.getElementById("close-icon");
 const mobileNav = document.getElementById("mobile-nav");
+const tabletNav = document.querySelector('tablet-nav');
 
 // Show menu when the menu icon is clicked
 menuIcon.addEventListener("click", () => {
