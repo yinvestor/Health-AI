@@ -57,10 +57,10 @@
                         <a href="{% url 'index' %}" class="nav-link hover:text-amber-500 bg-black text-white px-4 py-2 rounded">Home</a>
                     </li>
                     <li>
-                        <a href="{% url 'checkup' %}" class="nav-link hover:text-amber-500">How It Works</a>
+                        <a href="{% url 'login' %}" class="nav-link hover:text-amber-500">How It Works</a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link hover:text-amber-500">About</a>
+                        <a href="{% url 'about' %}" class="nav-link hover:text-amber-500">About</a>
                     </li>
                     <li>
                         <a href="#" class="nav-link hover:text-amber-500">Contact</a>
@@ -95,6 +95,7 @@
             <p class="text-gray-400 text-sm">
                 Health AI is dedicated to providing advanced health solutions using cutting-edge AI technology. Our mission is to empower individuals to make informed health decisions.
             </p>
+            <button class="border-2 my-2 rounded-md border-purple-300 hover:border-purple-600 hover:text-purple-600 transition-opacity px-2 font font-semibold"><a href="{% url 'about' %}">Read more</a></button>
         </div>
 
         <!-- Quick Links -->
@@ -105,10 +106,10 @@
                     <a href="{% url 'index' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">Home</a>
                 </li>
                 <li>
-                    <a href="{% url 'checkup' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">How It Works</a>
+                    <a href="{% url 'login' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">How It Works</a>
                 </li>
                 <li>
-                    <a href="#about" id="about" class="text-gray-400 hover:text-yellow-400 transition duration-200">About</a>
+                    <a href="{% url 'about' %}" id="about" class="text-gray-400 hover:text-yellow-400 transition duration-200">About</a>
                 </li>
                 <li>
                     <a href="#contact" id="contact" class="text-gray-400 hover:text-yellow-400 transition duration-200">Contact</a>
