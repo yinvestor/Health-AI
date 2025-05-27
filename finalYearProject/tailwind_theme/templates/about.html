@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load tailwind_tags %}
+{% tailwind_css %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white mb-4 p-8 mt-10 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-blue-800 mb-4">🫀 Understanding Heart Disease Prediction Parameters</h1>
+    <p class="text-gray-700 mb-6">
+        This guide explains the medical parameters used in predicting Coronary Artery Disease (CAD). It’s written for everyone — patients, doctors, and even non-medical users.
+    </p>
+
+    <h2 class="text-2xl font-semibold text-blue-700 mb-4">📋 Parameters Explained</h2>
+
+    {% for item in parameters %}
+    <div class="mb-6">
+        <h3 class="text-xl text-blue-600 font-semibold">{{ item.title }}</h3>
+        <p class="text-gray-700 mt-1">{{ item.description }}</p>
+        {% if item.values %}
+        <ul class="list-disc list-inside text-gray-600 mt-2">
+            {% for val in item.values %}
+            <li>{{ val }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if item.note %}
+        <div class="mt-2 p-3 bg-blue-50 border-l-4 border-blue-400 text-sm text-blue-800 rounded">
+            {{ item.note }}
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="mt-8">
+        <h2 class="text-2xl font-semibold text-blue-700 mb-3">✅ Final Notes</h2>
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+            <li>Risk scores are <strong>not a diagnosis</strong>.</li>
+            <li>Always consult a <strong>licensed doctor</strong> for interpretation.</li>
+            <li>Maintain a healthy lifestyle and attend regular medical checkups.</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% load tailwind_tags form_tags %}
+{% tailwind_css %}
+{% block content %}  
+    <div class="container">
+        <h1>🫀 Understanding Heart Disease Prediction Parameters</h1>
+        <p>This guide explains the medical parameters used in predicting Coronary Artery Disease (CAD). It’s written for everyone — patients, doctors, and even non-medical users.</p>
+
+        <div class="section">
+            <h2>📋 Parameters Explained</h2>
+
+            <div class="param">
+                <h3>1. CP (Chest Pain Type)</h3>
+                <p>Type of chest pain experienced.</p>
+                <ul>
+                    <li>0: Typical angina</li>
+                    <li>1: Atypical angina</li>
+                    <li>2: Non-anginal pain</li>
+                    <li>3: Asymptomatic</li>
+                </ul>
+                <div class="note">Chest pain type helps assess heart risk and whether pain is heart-related.</div>
+            </div>
+
+            <div class="param">
+                <h3>2. Trestbps (Resting Blood Pressure)</h3>
+                <p>Blood pressure measured while resting (mm Hg). Normal is ~120/80 mm Hg.</p>
+                <div class="note">High resting BP increases strain on the heart and blood vessels.</div>
+            </div>
+
+            <div class="param">
+                <h3>3. Chol (Serum Cholesterol)</h3>
+                <p>Amount of cholesterol in the blood. Healthy level: &lt; 200 mg/dl.</p>
+                <div class="note">High cholesterol can lead to artery blockage and heart disease.</div>
+            </div>
+
+            <div class="param">
+                <h3>4. FBS (Fasting Blood Sugar)</h3>
+                <p>Blood sugar after fasting:</p>
+                <ul>
+                    <li>1: ≥ 120 mg/dl</li>
+                    <li>0: &lt; 120 mg/dl</li>
+                </ul>
+                <div class="note">Elevated sugar can damage heart-controlling nerves and vessels.</div>
+            </div>
+
+            <div class="param">
+                <h3>5. Restecg (Resting ECG)</h3>
+                <p>Electrocardiogram results at rest:</p>
+                <ul>
+                    <li>0: Normal</li>
+                    <li>1: ST-T abnormality</li>
+                    <li>2: Left ventricular hypertrophy</li>
+                </ul>
+                <div class="note">Helps detect electrical or structural heart issues.</div>
+            </div>
+
+            <div class="param">
+                <h3>6. Thalach (Maximum Heart Rate Achieved)</h3>
+                <p>Maximum heart rate recorded during stress/exercise (usually ~220 - age).</p>
+                <div class="note">A low peak rate may indicate limited heart performance.</div>
+            </div>
+
+            <div class="param">
+                <h3>7. Exang (Exercise-Induced Angina)</h3>
+                <p>Chest pain during physical activity:</p>
+                <ul>
+                    <li>1: Yes</li>
+                    <li>0: No</li>
+                </ul>
+                <div class="note">Pain during exercise can signal restricted blood flow to the heart.</div>
+            </div>
+
+            <div class="param">
+                <h3>8. Oldpeak (ST Depression During Exercise)</h3>
+                <p>Difference in ECG readings at rest vs during exercise (in mV).</p>
+                <div class="note">Higher values may indicate heart stress or oxygen shortage.</div>
+            </div>
+
+            <div class="param">
+                <h3>9. Slope (ST Segment Slope)</h3>
+                <p>Shape of the ST ECG line during peak exercise:</p>
+                <ul>
+                    <li>0: Upsloping</li>
+                    <li>1: Flat</li>
+                    <li>2: Downsloping</li>
+                </ul>
+                <div class="note">Flat or downsloping lines may suggest impaired heart function.</div>
+            </div>
+
+            <div class="param">
+                <h3>10. CA (Number of Major Vessels Colored)</h3>
+                <p>Count of major arteries visible using a dye test (0–3).</p>
+                <div class="note">More visible blockages = higher heart disease risk.</div>
+            </div>
+
+            <div class="param">
+                <h3>11. Thal (Thallium Stress Test Result)</h3>
+                <p>Results from a blood flow imaging test:</p>
+                <ul>
+                    <li>1: Normal</li>
+                    <li>2: Fixed defect (permanent damage)</li>
+                    <li>3: Reversible defect (temporary blockage)</li>
+                </ul>
+                <div class="note">Helps determine if there's proper blood flow to the heart muscle.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>✅ Final Notes</h2>
+            <p>These values are used by a machine learning model to estimate your risk of Coronary Artery Disease (CAD).</p>
+            <ul>
+                <li>Risk scores are **not a diagnosis**.</li>
+                <li>Always consult a **licensed doctor** for interpretation.</li>
+                <li>Keep a healthy lifestyle and schedule regular checkups.</li>
+            </ul>
+        </div>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f9fafb;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 960px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        h1, h2 {
+            color: #1e3a8a;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .param {
+            margin-bottom: 15px;
+        }
+        .param h3 {
+            color: #2563eb;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e0f2fe;
+            border-left: 4px solid #38bdf8;
+            padding: 10px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+        }
+    </style>
+{% endblock %} {% endcomment %}

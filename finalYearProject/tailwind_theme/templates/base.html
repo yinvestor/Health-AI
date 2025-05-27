@@ -16,17 +16,17 @@
     {% tailwind_css %}
 </head>
 <body class="block">
-    <header class="w-full bg-blue-700 ">
-        <div class="container flex flex-col">
-            <div class="ml-4 mt-4 mb-8">
+    <header class="w-full bg-blue-700 md:h-[100px]">
+        <div class="container flex flex-col md:flex md:flex-row">
+            <div class="ml-4 mt-4 mb-8 md:my-6 md:ml-8 md:mr-12">
                 <p class="font-oswald text-2xl text-white">
                     <a href="{% url 'index' %}">Health AI</a>
                 </p>
             </div>
-            <div class="font-poppins font-semibold flex flex-row">
+            {% comment %} <div class="font-poppins font-semibold flex flex-row">
                 <div class="absolute left-0 top-0 py-14 w-full">
-                    <nav class="hidden md:flex">
-                        <ul class="font-poppins gap-2 ml-40">
+                    <nav class="hidden md:flex md:m-0">
+                        <ul class="font-poppins gap-2 ml-40 md:flex md:flex-row md:gap-2">
                             <li>
                                 <a href="{% url 'index' %}" class="nav-link hover:text-amber-500 bg-slate-200 px-2 border rounded border-slate-200 ease-in duration-75">Home</a>
                             </li>
@@ -44,23 +44,23 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
+                </div> {% endcomment %}
                 <!-- Mobile Menu -->
                 <div class="md:hidden absolute top-[0.7rem] right-[1.50rem] text-2xl gap-2 cursor-pointer">
                     <i id="menu-icon" class="ri-menu-line text-white"></i>
                     <i id="close-icon" class="ri-close-line hidden text-white"></i>
                 </div>
             </div>
-            <nav id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-white shadow-md z-40">
-                <ul class="font-poppins flex flex-col items-center gap-2 py-4">
+            <nav id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-white shadow-md z-40 md:block md:flex md:flex-col md:bg-blue-700 md:text-white">
+                <ul class="font-poppins flex flex-col items-center gap-4 py-4 md:flex-row md:items-center md:justify-center md:top-50 md:left-50 md:mb-4 ">
                     <li>
-                        <a href="{% url 'index' %}" class="nav-link hover:text-amber-500">Home</a>
+                        <a href="{% url 'index' %}" class="nav-link hover:text-amber-500 bg-black text-white px-4 py-2 rounded">Home</a>
                     </li>
                     <li>
-                        <a href="{% url 'checkup' %}" class="nav-link hover:text-amber-500">How It Works</a>
+                        <a href="{% url 'login' %}" class="nav-link hover:text-amber-500">How It Works</a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link hover:text-amber-500">About</a>
+                        <a href="{% url 'about' %}" class="nav-link hover:text-amber-500">About</a>
                     </li>
                     <li>
                         <a href="#" class="nav-link hover:text-amber-500">Contact</a>
@@ -69,9 +69,14 @@
                         {% if user.is_authenticated %}
                         <a href="{% url 'logout' %}" class="nav-link hover:text-amber-500 bg-black text-white px-4 py-2 rounded">Logout</a>
                         {% else %}
-                            <a href="{% url 'register' %}" class="nav-link hover:text-amber-500 bg-black text-white px-4 py-2 rounded">Register</a>
+                            <a href="{% url 'register' %}" class="nav-link hover:text-amber-500 ">Register</a>
                         {% endif %}
                     </li>
+                    {% comment %} <ul>
+                        <li>
+
+                        </li>
+                    </ul> {% endcomment %}
                 </ul>
             </nav>
         </div>
@@ -83,13 +88,14 @@
         {% endblock %}
     </main>
     <footer>
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 md:mt-8 gap-8 px-4">
         <!-- About Section -->
         <div>
             <h4 class="text-lg font-semibold mb-4">About Health AI</h4>
             <p class="text-gray-400 text-sm">
                 Health AI is dedicated to providing advanced health solutions using cutting-edge AI technology. Our mission is to empower individuals to make informed health decisions.
             </p>
+            <button class="border-2 my-2 rounded-md border-purple-300 hover:border-purple-600 hover:text-purple-600 transition-opacity px-2 font font-semibold"><a href="{% url 'about' %}">Read more</a></button>
         </div>
 
         <!-- Quick Links -->
@@ -100,10 +106,10 @@
                     <a href="{% url 'index' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">Home</a>
                 </li>
                 <li>
-                    <a href="{% url 'checkup' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">How It Works</a>
+                    <a href="{% url 'login' %}" class="text-gray-400 hover:text-yellow-400 transition duration-200">How It Works</a>
                 </li>
                 <li>
-                    <a href="#about" id="about" class="text-gray-400 hover:text-yellow-400 transition duration-200">About</a>
+                    <a href="{% url 'about' %}" id="about" class="text-gray-400 hover:text-yellow-400 transition duration-200">About</a>
                 </li>
                 <li>
                     <a href="#contact" id="contact" class="text-gray-400 hover:text-yellow-400 transition duration-200">Contact</a>

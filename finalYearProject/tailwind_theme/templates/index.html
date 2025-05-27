@@ -3,14 +3,13 @@
 {% block content %}
 	<body class="w-full">
 
-        <section class=" flex flex-row align-middle text-center h-[300px] bg-black" id="home">
-            <div class=" w-full align-middle mb-4 mt-20 text-center">
-                <div class="left-0 " >
-                    <div class="">
-                    <h1 class="font-semibold text-3xl font-poppins bg-clip-text text-transparent bg-gradient-to-l from-green-200 via-teal-800 to-purple-500">
+        <section class=" flex flex-row align-middle text-center md:gap-4 md:h-[400px] h-[300px] bg-black" id="home">
+            <div class=" w-full align-middle mb-4 md:box-border md:mt-24 md:h-[300px] md:mb-8 mt-20 text-center">
+                <div class="md:text-center md:justify-center md:left-0.5 md:top-0.5 md:mx-auto" >
+                    <h1 class="font-semibold text-3xl md:p-4 md:text-5xl font-poppins bg-clip-text text-transparent bg-gradient-to-l from-green-200 via-teal-800 to-purple-500">
                         Revolutionizing Healthcare with AI-Powered Insights.
                     </h1>
-                    <h2 class="text-white font-oswald font-bold font-italic text-xl">
+                    <h2 class="text-white font-oswald md:text-3xl  font-bold font-italic text-xl">
                         "Empowering doctors, patients, and researchers to make smarter health decisions faster."
                     </h2>
 
@@ -18,7 +17,7 @@
 
                 <div class="relative ml-[300px]  my-4">
                    <button class=" p-1 border  rounded font-bold bg-clip-text text-transparent bg-gradient-to-l from-indigo-600 to-fuchsia-500 hover:border hover:border-purple-700 hover:bg-yellow-700 hover:text-white hover:underline">
-                        Learn More<i class="ri-arrow-right-long-line"></i>
+                        <a href="{% url 'about' %}">Learn More<i class="ri-arrow-right-long-line"></a></i>
                    </button>
                 </div>
                 </div>
@@ -29,8 +28,8 @@
             <div>
                 
 
-                <div class="">
-                    <button class="p-2 mx-[196px] w-40 my-8 border shadow-md rounded bg-white font-bold bg-clip-text text-transparent bg-gradient-to-l from-indigo-600 to-fuchsia-500 hover:shadow-md hover:shadow-green-400 hover:bg-green-400">
+                <div class="md:top-50 md:left-50 md:mx-auto md:justify-center md:align-center md:text-center md:flex md:items-center">
+                    <button class="p-2 mx-[196px] w-40 my-8 border shadow-md rounded bg-white font-bold bg-clip-text text-transparent bg-gradient-to-l from-indigo-600 to-fuchsia-500 hover:shadow-md hover:shadow-green-400 hover:bg-green-400 md:px-8">
                         <a href="{% url 'checkup' %}">Try It Now</a>
                     </button>
                 </div>
