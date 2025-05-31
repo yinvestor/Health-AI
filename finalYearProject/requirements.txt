@@ -8,3 +8,4 @@ django-compressor
 pandas
 djangorestframework
 shap
+jupyter

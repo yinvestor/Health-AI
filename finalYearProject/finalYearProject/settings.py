@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "tailwind_theme",
     "HealthAI.apps.HealthaiConfig",
     "compressor",
+    "rest_framework",
 ]
 
 TAILWIND_APP_NAME = "tailwind_theme"

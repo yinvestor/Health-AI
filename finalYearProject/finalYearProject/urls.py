@@ -21,6 +21,7 @@ from HealthAI import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("healthai", include("HealthAI.urls")),
+    path("api/predict/", views.predict_cad_api, name="predict_cad_api"),
+    path("healthai/", include("HealthAI.urls")),
     path("", views.index, name="index"),
 ]
