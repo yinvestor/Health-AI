@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load tailwind_tags form_tags %}
+
+{% block content %}
+<section class="max-w-md font-poppins mx-auto mb-6 mt-10 p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-6">Register as patient</h2>
+
+  <form method="post" action="">
+    {% csrf_token %}
+
+    <!-- User Account Info -->
+    <h3 class="text-lg font-semibold mb-2">Patient Info</h3>
+    {% for field in form %}
+      <div class="mb-4">
+        <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+          {{ field.label }}
+        </label>
+        {{ field|add_class:"w-full mt-1 px-3 py-2 border border-gray-300 rounded-md" }}
+        {% for error in field.errors %}
+          <p class="text-red-500 text-sm">{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+    
+
+    <button type="submit" class="w-40 block py-2 mt-4 mb-4 bg-blue-500 text-white rounded hover:bg-blue-700 items-center text-center justify-center place-content-center top-0.5 left-0.5 mx-auto">
+      Register as patient
+    </button>
+  </form>
+</section>
+{% endblock %}

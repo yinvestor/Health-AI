@@ -7,3 +7,4 @@ django-tailwind
 django-compressor
 pandas
 djangorestframework
+shap

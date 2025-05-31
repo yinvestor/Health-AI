@@ -8,8 +8,8 @@ import joblib
 import numpy as np
 from django.contrib.auth.models import User
 
-model = joblib.load('c:/Users/bigir/OneDrive/Desktop/Health-AI/finalYearProject/project-models/model_training/heart_disease_xgboost_model.pkl')
-scaler = joblib.load('c:/Users/bigir/OneDrive/Desktop/Health-AI/finalYearProject/project-models/model_training/heart_disease_scaler.pkl')
+model = joblib.load('c:/Users/dell/OneDrive/Desktop/Health-AI/finalYearProject/project-models/model_training/heart_disease_xgboost_model.pkl')
+scaler = joblib.load('c:/Users/dell/OneDrive/Desktop/Health-AI/finalYearProject/project-models/model_training/heart_disease_scaler.pkl')
 
 def base(request):
     return render(request, 'base.html')

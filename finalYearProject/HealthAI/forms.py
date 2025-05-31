@@ -27,8 +27,10 @@ class PatientsForm(forms.ModelForm):
     class Meta:
         model = Patients
         fields = ['first_name', 'last_name', 'email', 'age', 'contact']
+        widgets = {
+            'contact': forms.TextInput(attrs={'placeholder': 'Eg. 0744939399', type: 'tel'})
         
-    
+        }
 from django import forms
 from .models import CheckUp
 
@@ -40,7 +42,7 @@ class CheckUpForm(forms.ModelForm):
 
         widgets = {
             'age': forms.NumberInput(attrs={
-                'placeholder': 'e.g. 45', 'min': 1, 'max': 120
+                'placeholder': 'e.g. 45', 'min': 18, 'max': 120
             }),
             'sex': forms.Select(choices=[(1, 'Female'), (2, 'Male')]),
             'cp': forms.Select(choices=[
@@ -50,7 +52,7 @@ class CheckUpForm(forms.ModelForm):
                 (3, 'Asymptomatic(3)')
             ]),
             'trestbps': forms.NumberInput(attrs={
-                'placeholder': 'e.g. 130 mm Hg(70 - 100)', 'min': 70, 'max': 200
+                'placeholder': 'e.g. 130 mm Hg(70 - 200)', 'min': 70, 'max': 200
             }),
             'chol': forms.NumberInput(attrs={
                 'placeholder': 'e.g. 250 mg/dl(100 - 600)', 'min': 100, 'max': 600
