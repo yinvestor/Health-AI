@@ -1,4 +1,69 @@
+
+
+
 {% extends 'index.html' %}
+{% load static tailwind_tags %}
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+<style>
+@media print {
+    a, button {
+        display: none !important;
+    }
+}
+</style>
+
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-center mb-4">🧠 Prediction Result</h2>
+    <p class="text-xl mb-2">
+        {% if prediction == 1 %}
+            ⚠️ <span class="font-semibold">The patient is likely to have Coronary Artery Disease.</span>
+        {% else %}
+            ✅ <span class="font-semibold">The patient is not likely to have Coronary Artery Disease.</span>
+        {% endif %}
+    </p>
+
+    <div class="mt-4">
+        <p><strong>Risk Level:</strong> <span class="text-lg text-red-600">{{ risk }}</span></p>
+        <p><strong>Prediction Confidence:</strong> {{ probability }}%</p>
+    </div>
+
+    <div class="mt-6">
+        <h3 class="text-lg font-semibold mb-2">🔍 Key Contributing Features:</h3>
+        <ul class=" pl-6 text-gray-700">
+            {% for feat, impact in top_features %}
+                <li><strong>{{ feat|capfirst }}:</strong> Impact score = {{ impact|floatformat:2 }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if advice %}
+    <div class="mt-6">
+        <h3 class="text-lg font-semibold mb-2">🩺 Personalized Advice:</h3>
+        <ul class=" pl-6 text-gray-700">
+            {% for line in advice %}
+                <li>{{ line }}</li>
+            {% endfor %}
+        </ul>
+        <p class="mt-2 p-3 bg-blue-50 border-l-4 border-blue-400 text-base text-blue-800 rounded">You are advised to visit a healthcare professional or nearby healthcare facility incase of need for more understandable explanation for the result.</p>
+    </div>
+    {% endif %}
+
+    <div class="mt-6">
+        <a href="{% url 'checkup' %}" class="inline px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+            🔁 Try another checkup
+        </a>
+    </div>
+    <div class="mt-4">
+    <button onclick="window.print()" class="inline px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+        🖨️ Print / Download as PDF
+    </button>
+</div>
+</div>
+{% endblock %}
+
+{% comment %} {% extends 'index.html' %}
 {% load static tailwind_tags %}
 
 {% block title %}Prediction Result{% endblock %}
@@ -15,4 +80,4 @@
     </p>
     <a href="{% url 'checkup' %}" class="mt-4 inline-block text-blue-500 underline">Try another checkup</a>
 </div>
-{% endblock %}
+{% endblock %} {% endcomment %}

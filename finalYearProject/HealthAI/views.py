@@ -8,8 +8,8 @@ import joblib
 import numpy as np
 from django.contrib.auth.models import User
 
-model = joblib.load('c:/Users/dell/OneDrive/Desktop/Health-AI/finalYearProject/project-models/model_training/heart_disease_xgboost_model.pkl')
-scaler = joblib.load('c:/Users/dell/OneDrive/Desktop/Health-AI/finalYearProject/project-models/model_training/heart_disease_scaler.pkl')
+model = joblib.load('c:/Users/bigir/OneDrive/Desktop/Health-AI/finalYearProject/project-models/model_training/heart_disease_xgboost_model.pkl')
+scaler = joblib.load('c:/Users/bigir/OneDrive/Desktop/Health-AI/finalYearProject/project-models/model_training/heart_disease_scaler.pkl')
 
 def base(request):
     return render(request, 'base.html')
@@ -131,6 +131,34 @@ def register(request):
 def prediction(request):
     return render(request, 'prediction.html')
 
+# @login_required
+# def checkup(request):
+#     if request.method == 'POST':
+#         form = CheckUpForm(request.POST)
+#         if form.is_valid():
+#             instance = form.save(commit=False)
+#             instance.patient = Patients.objects.get(user=request.user)
+
+#             features = np.array([[ 
+#                 instance.age, instance.sex, instance.cp, instance.trestbps, 
+#                 instance.chol, instance.fbs, instance.restecg, instance.thalach, 
+#                 instance.exang, instance.oldpeak, instance.slope, 
+#                 instance.ca, instance.thal
+#             ]])
+#             scaled = scaler.transform(features)
+#             prediction = model.predict(scaled)[0]
+
+#             instance.save()
+
+#             return render(request, 'prediction.html', {'prediction': prediction})
+#     else:
+#         form = CheckUpForm()
+
+#     return render(request, 'checkup.html', {'form': form})
+
+from sklearn.preprocessing import StandardScaler
+import shap
+
 @login_required
 def checkup(request):
     if request.method == 'POST':
@@ -147,14 +175,49 @@ def checkup(request):
             ]])
             scaled = scaler.transform(features)
             prediction = model.predict(scaled)[0]
+            probability = model.predict_proba(scaled)[0][1]  # Prob. of class=1
 
             instance.save()
 
-            return render(request, 'prediction.html', {'prediction': prediction})
+            # SHAP or model feature importances
+            explainer = shap.TreeExplainer(model)
+            shap_values = explainer.shap_values(scaled)
+            feature_importance = list(zip(
+                ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 
+                 'exang', 'oldpeak', 'slope', 'ca', 'thal'], shap_values[0]
+            ))
+            top_features = sorted(feature_importance, key=lambda x: abs(x[1]), reverse=True)[:3]
+
+            # Risk category
+            if probability >= 0.8:
+                risk = "High"
+            elif probability >= 0.5:
+                risk = "Medium"
+            else:
+                risk = "Low"
+
+            # Health advice map
+            health_advice = {
+                "chol": "High cholesterol detected. Consider reducing saturated fats and increasing physical activity.",
+                "trestbps": "High blood pressure. Monitor regularly and reduce sodium intake.",
+                "thalach": "Low max heart rate. Discuss with a cardiologist if you feel chest pain during activity.",
+                "oldpeak": "ST depression indicates possible ischemia. Further testing may be necessary.",
+                "age": "Increased age is a risk factor. Regular checkups are important."
+            }
+            advice = [health_advice[f[0]] for f in top_features if f[0] in health_advice]
+
+            return render(request, 'prediction.html', {
+                'prediction': prediction,
+                'risk': risk,
+                'probability': round(probability * 100, 2),
+                'top_features': top_features,
+                'advice': advice
+            })
     else:
         form = CheckUpForm()
 
     return render(request, 'checkup.html', {'form': form})
+
 
 def login_view(request):
     if request.method == 'POST':
